@@ -56,6 +56,10 @@ body {
 .construccion button {
     padding: .5rem;
 }
+.oreo-cont {
+    display: flex;
+    justify-content: center;
+}
 .oreo {
     margin: 5rem;
     width: 30rem;
@@ -94,5 +98,11 @@ body {
     100% {
         transform: translateY(-5rem);
         opacity: 0;
+    }
+}
+
+@media (max-width: 680px) {
+    .oreo {
+        width: 70%;
     }
 }
