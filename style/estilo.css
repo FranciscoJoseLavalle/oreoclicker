@@ -16,6 +16,13 @@ Fuentes */
 body {
     background-color: #dcb;
 }
+
+h1 {
+    padding: 1rem 0;
+    background-color: #654;
+    color: #fff;
+    letter-spacing: .1rem;
+}
 /* ------------Header------------ */
 .header {
     display: flex;
