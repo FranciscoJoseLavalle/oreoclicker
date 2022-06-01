@@ -47,6 +47,7 @@ h1 {
 .construcciones-cont {
     display: flex;
     flex-direction: column;
+    margin-bottom: 3rem;
     gap: .5rem;
     width: 100%;
 }
@@ -87,6 +88,13 @@ h1 {
     animation-timing-function: linear;
 }
 /* ------------Main------------ */
+
+/* ------------Footer------------ */
+footer {
+    text-align: center;
+    margin-top: 5rem;
+}
+/* ------------Footer------------ */
 
 @keyframes oreo {
     0% {
