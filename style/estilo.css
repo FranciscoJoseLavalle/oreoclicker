@@ -72,7 +72,7 @@ h1 {
     margin: 5rem;
     width: 30rem;
     border-radius: 50%;
-    animation-name: oreo;
+    /* animation-name: oreo; */
     animation-duration: 10s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;

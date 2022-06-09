@@ -19,17 +19,27 @@ let construcciones = [
 
 // Mejoras
 let mejoras = [
-    { nombre: 'Cursor PRO', multiplica: 2, precio: 1000, construccion: 'Cursor' },
-    { nombre: 'Abuelas PRO', multiplica: 2, precio: 5000, construccion: 'Abuela' },
-    { nombre: 'Granja PRO', multiplica: 2, precio: 25000, construccion: 'Granja' },
-    { nombre: 'Minas PRO', multiplica: 2, precio: 125000, construccion: 'Minas' },
-    { nombre: 'Fabrica PRO', multiplica: 2, precio: 300000, construccion: 'Fabrica' },
-    { nombre: 'Banco PRO', multiplica: 2, precio: 1000000, construccion: 'Banco' },
-    { nombre: 'Templo PRO', multiplica: 2, precio: 5000000, construccion: 'Templo' }
+    { nombre: 'Cursor PRO', multiplica: 2, precio: 1000, construccion: 'Cursor', requiere: 10, objeto: construcciones[0] },
+
+    { nombre: 'Abuelas PRO', multiplica: 2, precio: 5000, construccion: 'Abuela', requiere: 10, objeto: construcciones[1] },
+
+    { nombre: 'Granja PRO', multiplica: 2, precio: 25000, construccion: 'Granja', requiere: 10, objeto: construcciones[2] },
+
+    { nombre: 'Minas PRO', multiplica: 2, precio: 125000, construccion: 'Minas', requiere: 10, objeto: construcciones[3] },
+
+    { nombre: 'Fabrica PRO', multiplica: 2, precio: 300000, construccion: 'Fabrica', requiere: 10, objeto: construcciones[4] },
+
+    { nombre: 'Banco PRO', multiplica: 2, precio: 1000000, construccion: 'Banco', requiere: 10, objeto: construcciones[5] },
+
+    { nombre: 'Templo PRO', multiplica: 2, precio: 5000000, construccion: 'Templo', requiere: 10, objeto: construcciones[6] }
 ]
 
+let mejorasForEach = []
+let mejorasAplicadas = []
+let mejorasFiltradas = []
+
 // Oreos
-let oreos = 2000;
+let oreos = 0;
 let oreosPS = 1;
 
 // Evento de carga de DOM
@@ -40,7 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 // Click a la galletita
-oreo.addEventListener('click', (e) => {
+oreo.addEventListener('click', oreoClick)
+
+function oreoClick(e) {
     oreos += Math.round((oreosPS * 0.135) * 100) / 100;
     actualizarDisplay();
     const p = document.createElement('p');
@@ -52,7 +64,8 @@ oreo.addEventListener('click', (e) => {
     setTimeout(() => {
         p.remove();
     }, 2000)
-})
+
+}
 
 // Aumentar por segundo
 function iniciarOreosPS() {
@@ -86,15 +99,12 @@ function mostrarConstrucciones() {
 
         btn.onclick = () => {
             if (oreos >= construccion.precio) {
-                console.log(mejoras)
                 oreosPS += construccion.cps;
                 oreos -= construccion.precio;
                 construccion.precio = Math.round(construccion.precio * 1.05);
                 construccion.cantidad++;
                 construccionesCont.textContent = '';
-                if (construccion.cantidad >= 10) {
-                    mostrarMejoras(construccion);
-                }
+                mostrarMejoras(construccion);
                 mostrarConstrucciones();
                 actualizarDisplay();
             }
@@ -104,8 +114,16 @@ function mostrarConstrucciones() {
 
 // Mostrar las mejoras en pantalla
 function mostrarMejoras(construccion) {
-    mejorasFiltradas = mejoras.filter(mejora => mejora.construccion === construccion.nombre)
-    mejorasFiltradas.forEach(mejora => {
+    if ((!mejorasForEach.some(elem => elem.construccion === construccion.nombre)) && construccion.nombre !== 'Chiche') {
+        mejorasFiltradas = mejoras.filter(mejora => mejora.construccion === construccion.nombre && mejora.requiere === construccion.cantidad)
+        if (mejorasFiltradas.length > 0) {
+            mejorasForEach = [...mejorasForEach, ...mejorasFiltradas]
+        }
+    }
+
+    mejorasCont.textContent = '';
+
+    mejorasForEach.forEach(mejora => {
         const div = document.createElement('div');
         const p = document.createElement('p');
         const btn = document.createElement('button');
@@ -123,23 +141,36 @@ function mostrarMejoras(construccion) {
             if (mejora.precio <= oreos) {
                 oreos -= mejora.precio;
                 actualizarDisplay();
-                aplicarMejora(construccion);
+                aplicarMejora(construccion, mejora);
             }
         }
     })
 }
 
 // Aplicar las mejoras
-function aplicarMejora(construccion) {
-    console.log(construccion)
-    if (construccion.cantidad >= 10) {
-        mejorasFiltradas = mejoras.filter(mejora => mejora.construccion === construccion.nombre)
-        let cantidadPS = construccion.cps * construccion.cantidad;
-        let multiplicar = mejorasFiltradas[0].multiplica * cantidadPS;
-        construccion.cps = construccion.cps * mejorasFiltradas[0].multiplica
-        oreosPS -= cantidadPS;
-        oreosPS += multiplicar;
-        mejoras = mejoras.filter(mejora => mejora.construccion !== construccion.nombre)
+function aplicarMejora(construccion, mejora) {
+
+    let i = construcciones.indexOf(mejora.objeto)
+
+
+    let mejorasFiltradas = construcciones.filter(construccionFilter => construccionFilter.nombre === mejora.construccion)
+    console.log(mejorasFiltradas)
+    console.log(mejora)
+
+    // Actualizar valores
+    let cantidadPS = construcciones[i].cps * construcciones[i].cantidad;
+    let multiplicar = mejora.multiplica * cantidadPS;
+    construcciones[i].cps = construcciones[i].cps * mejora.multiplica
+    oreosPS -= cantidadPS;
+    oreosPS += multiplicar;
+
+    // Eliminar las mejoras del HTML
+    mejorasForEach = mejorasForEach.filter(mejoras => mejoras.nombre !== mejora.nombre);
+
+    console.log(mejorasForEach)
+    if (mejorasForEach.length === 0) {
+        mostrarMejoras({nombre: 'Chiche'})
+    } else {
         mostrarMejoras(construccion);
     }
 }
