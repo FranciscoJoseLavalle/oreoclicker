@@ -101,6 +101,42 @@ h3 {
     animation-duration: 2s;
     animation-timing-function: linear;
 }
+
+.mejoras {
+    width: 100%;
+}
+.mejoras-cont {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    text-align: center;
+    flex-wrap: wrap;
+    margin: 0 .5rem;
+}
+.mejora {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .5rem;
+    background-color: #987;
+    border-radius: .3rem;
+    color: #fff;
+    padding: .5rem;
+    width: 25%;
+}
+.mejora button {
+    padding: .5rem;
+}
+@media (max-width: 570px) {
+    .mejora {
+        width: 40%;
+    }
+}
+@media (max-width: 380px) {
+    .mejora {
+        width: 60%;
+    }
+}
 /* ------------Main------------ */
 
 /* ------------Footer------------ */

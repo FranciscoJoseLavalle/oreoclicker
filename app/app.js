@@ -8,9 +8,9 @@ const mejorasCont = document.querySelector('.mejoras-cont');
 
 // Construcciones
 let construcciones = [
-    { nombre: 'Cursor', cps: 1, precio: 20, cantidad: 0, img: 'cursor.png' },
-    { nombre: 'Abuela', cps: 2, precio: 100, cantidad: 0, img: 'grandma.png' },
-    { nombre: 'Granja', cps: 4, precio: 500, cantidad: 0, img: 'farm.png' },
+    { nombre: 'Cursor', cps: 1, precio: 20, cantidad: 9, img: 'cursor.png' },
+    { nombre: 'Abuela', cps: 2, precio: 100, cantidad: 9, img: 'grandma.png' },
+    { nombre: 'Granja', cps: 4, precio: 500, cantidad: 9, img: 'farm.png' },
     { nombre: 'Minas', cps: 8, precio: 2500, cantidad: 0, img: 'mine.png' },
     { nombre: 'Fabrica', cps: 16, precio: 10000, cantidad: 0, img: 'factory.png' },
     { nombre: 'Banco', cps: 32, precio: 50000, cantidad: 0, img: 'bank.png' },
@@ -73,6 +73,9 @@ let oreosPS = 1;
 document.addEventListener('DOMContentLoaded', () => {
     oreos = parseFloat(localStorage.getItem('oreos')) || parseFloat(0);
     oreosPS = parseFloat(localStorage.getItem('oreosPS')) || parseFloat(1);
+    construcciones = JSON.parse(localStorage.getItem('construcciones')) || construcciones;
+    mejorasForEach = JSON.parse(localStorage.getItem('mejorasForEach')) || mejorasForEach;
+    // mejoras = JSON.parse(localStorage.getItem('mejoras')) || mejoras;
     iniciarOreosPS();
     actualizarDisplay();
     mostrarConstrucciones();
@@ -154,6 +157,7 @@ function mostrarConstrucciones() {
                 construccion.precio = Math.round(construccion.precio * 1.05);
                 construccion.cantidad++;
                 construccionesCont.textContent = '';
+                localStorage.setItem('construcciones', JSON.stringify(construcciones));
                 mostrarMejoras(construccion);
                 mostrarConstrucciones();
                 actualizarDisplay();
@@ -169,20 +173,26 @@ function mostrarMejoras(construccion) {
         if (mejorasFiltradas.length > 0) {
             mejorasForEach = [...mejorasForEach, ...mejorasFiltradas]
         }
+        // localStorage.setItem('mejorasForEach', JSON.stringify(mejorasForEach));
     }
 
     mejorasCont.textContent = '';
 
+    console.log(mejorasForEach);
+
     mejorasForEach.forEach(mejora => {
         const div = document.createElement('div');
         const p = document.createElement('p');
+        const btnText = document.createElement('p');
         const btn = document.createElement('button');
 
         div.classList.add('mejora')
 
-        p.textContent = `Nombre: ${mejora.nombre} - Precio: ${mejora.precio} Oreos`;
+        p.textContent = `${mejora.nombre}`;
+        btnText.textContent = `${mejora.precio} Oreos`
         btn.textContent = 'Comprar';
 
+        btn.append(btnText);
         div.append(p);
         div.append(btn);
         mejorasCont.append(div);
@@ -201,8 +211,9 @@ function mostrarMejoras(construccion) {
 function aplicarMejora(construccion, mejora) {
 
     let i = construcciones.indexOf(mejora.objeto)
-
-
+    console.log(i)
+    console.log(mejora.objeto)
+    console.log(construcciones)
     let mejorasFiltradas = construcciones.filter(construccionFilter => construccionFilter.nombre === mejora.construccion)
     console.log(mejorasFiltradas)
     console.log(mejora)
@@ -218,6 +229,13 @@ function aplicarMejora(construccion, mejora) {
     mejorasForEach = mejorasForEach.filter(mejoras => mejoras.nombre !== mejora.nombre);
 
     console.log(mejorasForEach)
+
+    // localStorage.setItem('mejorasForEach', JSON.stringify(mejorasForEach));
+
+    // localStorage.setItem('mejoras', JSON.stringify(mejoras));
+
+    // CHEQUEAR SI GUARDAR MEJORAS EN EL LOCAL STORAGE NO INTERFIERE AL NO ACTUALIZAR
+
     if (mejorasForEach.length === 0) {
         mostrarMejoras({nombre: 'Chiche'})
     } else {
