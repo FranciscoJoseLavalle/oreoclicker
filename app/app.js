@@ -7,26 +7,27 @@ const mejorasCont = document.querySelector('.mejoras-cont');
 const menu = document.querySelector('.menu');
 const hide = document.querySelector('.hide');
 const reset = document.querySelector('.reset');
+const body = document.querySelector('body');
 
 
 // Construcciones
 let construcciones = [
-    { nombre: 'Cursor', cps: 1, precio: 20, cantidad: 9, img: 'cursor.png' },
-    { nombre: 'Abuela', cps: 2, precio: 100, cantidad: 9, img: 'grandma.png' },
-    { nombre: 'Granja', cps: 4, precio: 500, cantidad: 9, img: 'farm.png' },
+    { nombre: 'Cursor', cps: 1, precio: 20, cantidad: 0, img: 'cursor.png' },
+    { nombre: 'Abuela', cps: 2, precio: 100, cantidad: 0, img: 'grandma.png' },
+    { nombre: 'Granja', cps: 4, precio: 500, cantidad: 0, img: 'farm.png' },
     { nombre: 'Minas', cps: 8, precio: 2500, cantidad: 0, img: 'mine.png' },
     { nombre: 'Fabrica', cps: 16, precio: 10000, cantidad: 0, img: 'factory.png' },
     { nombre: 'Banco', cps: 32, precio: 50000, cantidad: 0, img: 'bank.png' },
     { nombre: 'Templo', cps: 64, precio: 250000, cantidad: 0, img: 'temple.png' },
-    { nombre: 'Torre de mago', cps: 64, precio: 250000, cantidad: 0, img: 'wizard.png' },
-    { nombre: 'Cohetes', cps: 64, precio: 250000, cantidad: 0, img: 'rocket.png' },
-    { nombre: 'Laboratorios', cps: 64, precio: 250000, cantidad: 0, img: 'lab.png' },
-    { nombre: 'Portales', cps: 64, precio: 250000, cantidad: 0, img: 'oreo.png' },
-    { nombre: 'Máquinas del tiempo', cps: 64, precio: 250000, cantidad: 0, img: 'oreo.png' },
-    { nombre: 'Condensadores de antimateria', cps: 64, precio: 250000, cantidad: 0, img: 'oreo.png' },
-    { nombre: 'Primas', cps: 64, precio: 250000, cantidad: 0, img: 'oreo.png' },
-    { nombre: 'Apostadoras', cps: 64, precio: 250000, cantidad: 0, img: 'oreo.png' },
-    { nombre: 'Motores fractales', cps: 64, precio: 250000, cantidad: 0, img: 'oreo.png' }
+    { nombre: 'Torre de mago', cps: 150, precio: 2500000, cantidad: 0, img: 'wizard.png' },
+    { nombre: 'Cohetes', cps: 200, precio: 10000000, cantidad: 0, img: 'rocket.png' },
+    { nombre: 'Laboratorios', cps: 350, precio: 100000000, cantidad: 0, img: 'lab.png' },
+    { nombre: 'Portales', cps: 700, precio: 50000000, cantidad: 0, img: 'oreo.png' },
+    { nombre: 'Máquinas del tiempo', cps: 900, precio: 1000000000, cantidad: 0, img: 'oreo.png' },
+    { nombre: 'Condensadores de antimateria', cps: 2000, precio: 5000000000, cantidad: 0, img: 'oreo.png' },
+    { nombre: 'Primas', cps: 3600, precio: 500000000000, cantidad: 0, img: 'oreo.png' },
+    { nombre: 'Apostadoras', cps: 8000, precio: 1000000000000, cantidad: 0, img: 'oreo.png' },
+    { nombre: 'Motores fractales', cps: 17000, precio: 50000000000000, cantidad: 0, img: 'oreo.png' }
 ]
 
 // Mejoras
@@ -76,6 +77,7 @@ let oreosPS = 1;
 menu.addEventListener('click', () => {
     hide.classList.toggle('navMenu');
     if (hide.classList.contains('navMenu')) {
+        body.classList.add('scrollLock')
         hide.classList.remove('use');
         hide.classList.remove('hideMenu');
         hide.classList.add('showMenu');
@@ -84,6 +86,7 @@ menu.addEventListener('click', () => {
         hide.classList.add('hideMenu');
         setTimeout(() => {
             hide.classList.add('use');
+            body.classList.remove('scrollLock')
             hide.classList.remove('hideMenu');
         },1000)
     }
@@ -99,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     iniciarOreosPS();
     actualizarDisplay();
     mostrarConstrucciones();
+    console.log(construcciones)
 })
 
 // Vaciar localStorage

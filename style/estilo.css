@@ -15,6 +15,8 @@ Fuentes */
 }
 body {
     background-color: #dcb;
+}
+.scrollLock {
     overflow: hidden;
 }
 
@@ -22,6 +24,8 @@ h1 {
     background-color: #654;
     color: #fff;
     letter-spacing: .1rem;
+}
+.titleHeader {
     position: absolute;
     left: 0;
     right: 0;
@@ -38,6 +42,7 @@ h3 {
     flex-direction: column;
     gap: 1rem;
     text-align: center;
+    overflow: hidden;
 }
 .head {
     display: flex;
@@ -212,6 +217,9 @@ h3 {
 footer {
     text-align: center;
     margin-top: 5rem;
+}
+footer h1 {
+    padding: 1rem 0;
 }
 /* ------------Footer------------ */
 
