@@ -4,6 +4,9 @@ const oreosDisplay = document.querySelector('.oreosDisplay');
 const oreosPSDisplay = document.querySelector('.oreosPSDisplay');
 const construccionesCont = document.querySelector('.construcciones-cont');
 const mejorasCont = document.querySelector('.mejoras-cont');
+const menu = document.querySelector('.menu');
+const hide = document.querySelector('.hide');
+const reset = document.querySelector('.reset');
 
 
 // Construcciones
@@ -28,37 +31,37 @@ let construcciones = [
 
 // Mejoras
 let mejoras = [
-    { nombre: 'Cursor PRO', multiplica: 2, precio: 1000, construccion: 'Cursor', requiere: 10, objeto: construcciones[0] },
+    { nombre: 'Cursor PRO', multiplica: 2, precio: 1000, construccion: 'Cursor', requiere: 10, objeto: construcciones[0], img: 'cursor.png' },
 
-    { nombre: 'Abuelas PRO', multiplica: 2, precio: 5000, construccion: 'Abuela', requiere: 10, objeto: construcciones[1] },
+    { nombre: 'Abuelas PRO', multiplica: 2, precio: 5000, construccion: 'Abuela', requiere: 10, objeto: construcciones[1], img: 'grandma.png' },
 
-    { nombre: 'Granja PRO', multiplica: 2, precio: 25000, construccion: 'Granja', requiere: 10, objeto: construcciones[2] },
+    { nombre: 'Granja PRO', multiplica: 2, precio: 25000, construccion: 'Granja', requiere: 10, objeto: construcciones[2], img: 'farm.png' },
 
-    { nombre: 'Minas PRO', multiplica: 2, precio: 125000, construccion: 'Minas', requiere: 10, objeto: construcciones[3] },
+    { nombre: 'Minas PRO', multiplica: 2, precio: 125000, construccion: 'Minas', requiere: 10, objeto: construcciones[3], img: 'mine.png' },
 
-    { nombre: 'Fabrica PRO', multiplica: 2, precio: 300000, construccion: 'Fabrica', requiere: 10, objeto: construcciones[4] },
+    { nombre: 'Fabrica PRO', multiplica: 2, precio: 300000, construccion: 'Fabrica', requiere: 10, objeto: construcciones[4], img: 'factory.png' },
 
-    { nombre: 'Banco PRO', multiplica: 2, precio: 1000000, construccion: 'Banco', requiere: 10, objeto: construcciones[5] },
+    { nombre: 'Banco PRO', multiplica: 2, precio: 1000000, construccion: 'Banco', requiere: 10, objeto: construcciones[5], img: 'bank.png' },
 
-    { nombre: 'Templo PRO', multiplica: 2, precio: 5000000, construccion: 'Templo', requiere: 10, objeto: construcciones[6] },
+    { nombre: 'Templo PRO', multiplica: 2, precio: 5000000, construccion: 'Templo', requiere: 10, objeto: construcciones[6], img: 'temple.png' },
 
-    { nombre: 'Torre de mago PRO', multiplica: 2, precio: 5000000, construccion: 'Torre de mago', requiere: 10, objeto: construcciones[7] },
+    { nombre: 'Torre de mago PRO', multiplica: 2, precio: 5000000, construccion: 'Torre de mago', requiere: 10, objeto: construcciones[7], cantidad: 0, img: 'wizard.png' },
 
-    { nombre: 'Cohetes PRO', multiplica: 2, precio: 5000000, construccion: 'Cohetes', requiere: 10, objeto: construcciones[8] },
+    { nombre: 'Cohetes PRO', multiplica: 2, precio: 5000000, construccion: 'Cohetes', requiere: 10, objeto: construcciones[8], img: 'rocket.png' },
 
-    { nombre: 'Laboratorios PRO', multiplica: 2, precio: 5000000, construccion: 'Laboratorios', requiere: 10, objeto: construcciones[9] },
+    { nombre: 'Laboratorios PRO', multiplica: 2, precio: 5000000, construccion: 'Laboratorios', requiere: 10, objeto: construcciones[9], img: 'lab.png' },
 
-    { nombre: 'Portales PRO', multiplica: 2, precio: 5000000, construccion: 'Portales', requiere: 10, objeto: construcciones[10] },
+    { nombre: 'Portales PRO', multiplica: 2, precio: 5000000, construccion: 'Portales', requiere: 10, objeto: construcciones[10], img: 'oreo.png' },
 
-    { nombre: 'Máquinas del tiempo PRO', multiplica: 2, precio: 5000000, construccion: 'Máquinas del tiempo', requiere: 10, objeto: construcciones[11] },
+    { nombre: 'Máquinas del tiempo PRO', multiplica: 2, precio: 5000000, construccion: 'Máquinas del tiempo', requiere: 10, objeto: construcciones[11], img: 'oreo.png' },
 
-    { nombre: 'Condensadores de antimateria PRO', multiplica: 2, precio: 5000000, construccion: 'Condensadores de antimateria', requiere: 10, objeto: construcciones[12] },
+    { nombre: 'Condensadores de antimateria PRO', multiplica: 2, precio: 5000000, construccion: 'Condensadores de antimateria', requiere: 10, objeto: construcciones[12], img: 'oreo.png' },
 
-    { nombre: 'Primas PRO', multiplica: 2, precio: 5000000, construccion: 'Primas', requiere: 10, objeto: construcciones[13] },
+    { nombre: 'Primas PRO', multiplica: 2, precio: 5000000, construccion: 'Primas', requiere: 10, objeto: construcciones[13], img: 'oreo.png' },
 
-    { nombre: 'Apostadoras PRO', multiplica: 2, precio: 5000000, construccion: 'Apostadoras', requiere: 10, objeto: construcciones[14] },
+    { nombre: 'Apostadoras PRO', multiplica: 2, precio: 5000000, construccion: 'Apostadoras', requiere: 10, objeto: construcciones[14], img: 'oreo.png' },
 
-    { nombre: 'Motores fractales PRO', multiplica: 2, precio: 5000000, construccion: 'Motores fractales', requiere: 10, objeto: construcciones[15] }
+    { nombre: 'Motores fractales PRO', multiplica: 2, precio: 5000000, construccion: 'Motores fractales', requiere: 10, objeto: construcciones[15], img: 'oreo.png' }
 ]
 
 let mejorasForEach = []
@@ -69,17 +72,43 @@ let mejorasFiltradas = []
 let oreos = 0;
 let oreosPS = 1;
 
+// Desplegar menú
+menu.addEventListener('click', () => {
+    hide.classList.toggle('navMenu');
+    if (hide.classList.contains('navMenu')) {
+        hide.classList.remove('use');
+        hide.classList.remove('hideMenu');
+        hide.classList.add('showMenu');
+    } else {
+        hide.classList.remove('showMenu');
+        hide.classList.add('hideMenu');
+        setTimeout(() => {
+            hide.classList.add('use');
+            hide.classList.remove('hideMenu');
+        },1000)
+    }
+})
+
 // Evento de carga de DOM
 document.addEventListener('DOMContentLoaded', () => {
     oreos = parseFloat(localStorage.getItem('oreos')) || parseFloat(0);
     oreosPS = parseFloat(localStorage.getItem('oreosPS')) || parseFloat(1);
-    construcciones = JSON.parse(localStorage.getItem('construcciones')) || construcciones;
     mejorasForEach = JSON.parse(localStorage.getItem('mejorasForEach')) || mejorasForEach;
-    // mejoras = JSON.parse(localStorage.getItem('mejoras')) || mejoras;
+    construcciones = JSON.parse(localStorage.getItem('construcciones')) || construcciones;
+    construcciones.forEach(construccion => mostrarMejoras(construccion))
     iniciarOreosPS();
     actualizarDisplay();
     mostrarConstrucciones();
 })
+
+// Vaciar localStorage
+reset.addEventListener('click', () => {
+    localStorage.clear();
+    oreos = 0;
+    oreosPS = 1;
+    location.reload();
+})
+
 
 // Click a la galletita
 oreo.addEventListener('click', oreoClick)
@@ -158,6 +187,7 @@ function mostrarConstrucciones() {
                 construccion.cantidad++;
                 construccionesCont.textContent = '';
                 localStorage.setItem('construcciones', JSON.stringify(construcciones));
+                localStorage.setItem('mejoras', JSON.stringify(mejoras));
                 mostrarMejoras(construccion);
                 mostrarConstrucciones();
                 actualizarDisplay();
@@ -173,8 +203,10 @@ function mostrarMejoras(construccion) {
         if (mejorasFiltradas.length > 0) {
             mejorasForEach = [...mejorasForEach, ...mejorasFiltradas]
         }
-        // localStorage.setItem('mejorasForEach', JSON.stringify(mejorasForEach));
+        localStorage.setItem('mejorasForEach', JSON.stringify(mejorasForEach));
     }
+
+    localStorage.setItem('mejoras', JSON.stringify(mejoras));
 
     mejorasCont.textContent = '';
 
@@ -185,14 +217,17 @@ function mostrarMejoras(construccion) {
         const p = document.createElement('p');
         const btnText = document.createElement('p');
         const btn = document.createElement('button');
+        const img = document.createElement('img');
 
         div.classList.add('mejora')
 
-        p.textContent = `${mejora.nombre}`;
+        p.textContent = `${mejora.nombre} x${mejora.multiplica}`;
         btnText.textContent = `${mejora.precio} Oreos`
         btn.textContent = 'Comprar';
+        img.src = `./img/${mejora.img}`
 
         btn.append(btnText);
+        div.append(img);
         div.append(p);
         div.append(btn);
         mejorasCont.append(div);
@@ -209,13 +244,8 @@ function mostrarMejoras(construccion) {
 
 // Aplicar las mejoras
 function aplicarMejora(construccion, mejora) {
-
-    let i = construcciones.indexOf(mejora.objeto)
-    console.log(i)
-    console.log(mejora.objeto)
-    console.log(construcciones)
     let mejorasFiltradas = construcciones.filter(construccionFilter => construccionFilter.nombre === mejora.construccion)
-    console.log(mejorasFiltradas)
+    let i = construcciones.indexOf(mejorasFiltradas[0])
     console.log(mejora)
 
     // Actualizar valores
@@ -230,11 +260,7 @@ function aplicarMejora(construccion, mejora) {
 
     console.log(mejorasForEach)
 
-    // localStorage.setItem('mejorasForEach', JSON.stringify(mejorasForEach));
-
-    // localStorage.setItem('mejoras', JSON.stringify(mejoras));
-
-    // CHEQUEAR SI GUARDAR MEJORAS EN EL LOCAL STORAGE NO INTERFIERE AL NO ACTUALIZAR
+    localStorage.setItem('mejorasForEach', JSON.stringify(mejorasForEach));
 
     if (mejorasForEach.length === 0) {
         mostrarMejoras({nombre: 'Chiche'})
