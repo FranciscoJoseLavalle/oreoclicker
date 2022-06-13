@@ -157,18 +157,48 @@ h3 {
 .construccion img {
     width: 2rem;
 }
+.btnCont {
+    display: flex;
+    gap: .5rem;
+}
+.infoCont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
 .imgText {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
-@media (max-width: 350px) {
+@media (max-width: 400px) {
     .construccion {
-        padding: .35rem;
-        gap: .5rem;
+        padding: .25rem;
+        gap: .2rem;
+    }
+    .btnCont {
+        display: flex;
+        gap: .2rem;
+    }
+}
+@media (max-width: 355px) {
+    .construccion {
+        padding: .5rem .2rem;
+        gap: .2rem;
+    }
+    .construccion p {
+        font-size: 1rem;
+    }
+    .construccion button, .construccion button p {
+        font-size: .7rem;
     }
     .titleHeader {
         font-size: 1.7rem;
+    }
+    .btnCont {
+        display: flex;
+        gap: .2rem;
     }
 }
 .oreo-cont {

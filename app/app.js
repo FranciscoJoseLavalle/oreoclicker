@@ -236,15 +236,21 @@ function mostrarConstrucciones() {
         
         const infoCont = document.createElement('div');
         const infoText = document.createElement('p');
+        const infoText2 = document.createElement('p');
+        const infoTextCont = document.createElement('div');
         const btnInfo2 = document.createElement('button');
 
-        infoText.textContent = `Oreos por segundo: ${construccion.cps} - Oreos en total: ${construccion.cps * construccion.cantidad}`
+        infoText.textContent = `Oreos por segundo: ${construccion.cps}`
+        infoText2.textContent = `Oreos en total: ${construccion.cps * construccion.cantidad}`
         btnInfo2.textContent = 'X';
 
         infoCont.classList.add('use');
-
-        infoCont.append(infoText);
+        
+        infoTextCont.append(infoText);
+        infoTextCont.append(infoText2);
+        infoCont.append(infoTextCont);
         infoCont.append(btnInfo2);
+        infoCont.classList.add('infoCont')
 
         construccionesCont.append(div);
 
@@ -272,9 +278,13 @@ function mostrarConstrucciones() {
             infoCont.classList.toggle('use');
             div.textContent = ''
             if (!infoCont.classList.contains('use')) {
-                infoCont.classList.add('showMenu')
+                div.classList.remove('showMenu')
+                infoCont.classList.add('showMenu');
                 div.append(infoCont)
             } else {
+                div.classList.add('showMenu');
+                infoCont.classList.remove('showMenu')
+
                 textCont.append(p);
                 textCont.append(quantity);
         
