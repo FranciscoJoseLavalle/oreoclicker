@@ -66,12 +66,12 @@ h3 {
 }
 .hideMenu {
     animation: hideMenu;
-    animation-duration: 1s;
+    animation-duration: .75s;
     animation-timing-function: ease-in-out;
 }
 .showMenu {
     animation: menu;
-    animation-duration: 1s;
+    animation-duration: .75s;
     animation-timing-function: ease-in-out;
 }
 .navMenu {
@@ -85,6 +85,11 @@ h3 {
     align-items: center;
     height: 100vh;
     background-color: #654;
+    color: #000;
+}
+.navMenu p {
+    word-spacing: .1rem;
+    letter-spacing: .05rem;
 }
 .infoHide {
     padding: 1rem;
@@ -106,7 +111,7 @@ h3 {
         transform: translateX(0);
     }
     100% {
-        transform: translateX(100%);
+        transform: translateX(200%);
     }
 }
 .reiniciarCont {
@@ -133,6 +138,7 @@ h3 {
     margin-bottom: 3rem;
     gap: .5rem;
     width: 100%;
+    overflow: hidden;
 }
 .construccion {
     display: flex;
@@ -159,6 +165,7 @@ h3 {
 @media (max-width: 350px) {
     .construccion {
         padding: .35rem;
+        gap: .5rem;
     }
     .titleHeader {
         font-size: 1.7rem;
@@ -222,6 +229,12 @@ h3 {
     .mejora {
         width: 45%;
     }
+}
+button {
+    background-color: #eee;
+    border: none;
+    border-radius: .2rem;
+    color: #000;
 }
 /* ------------Main------------ */
 

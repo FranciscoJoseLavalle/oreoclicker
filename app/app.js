@@ -123,7 +123,7 @@ function showMenu(object, oppositeObject) {
             setTimeout(() => {
                 oppositeObject.classList.add('use');
                 oppositeObject.classList.remove('hideMenu');
-            },1000)
+            },750)
         }
     } else {
         object.classList.remove('showMenu');
@@ -132,7 +132,7 @@ function showMenu(object, oppositeObject) {
             object.classList.add('use');
             body.classList.remove('scrollLock')
             object.classList.remove('hideMenu');
-        },1000)
+        },750)
     }
 }
 
@@ -233,6 +233,19 @@ function mostrarConstrucciones() {
         div.append(imgText);
         div.append(btnCont);
 
+        
+        const infoCont = document.createElement('div');
+        const infoText = document.createElement('p');
+        const btnInfo2 = document.createElement('button');
+
+        infoText.textContent = `Oreos por segundo: ${construccion.cps} - Oreos en total: ${construccion.cps * construccion.cantidad}`
+        btnInfo2.textContent = 'X';
+
+        infoCont.classList.add('use');
+
+        infoCont.append(infoText);
+        infoCont.append(btnInfo2);
+
         construccionesCont.append(div);
 
         btn.onclick = () => {
@@ -250,12 +263,33 @@ function mostrarConstrucciones() {
             }
         }
         btnInfo.onclick = () => {
-            const infoCont = document.createElement('div');
-            const infoText = document.createElement('p');
-
-            infoText.textContent = `Oreos por segundo: ${construccion.cps} - Oreos en total: ${construccion.cps * construccion.cantidad}`
-
-            div.append(infoText);
+            mostrarInfo();
+        }
+        btnInfo2.onclick = () => {
+            mostrarInfo();
+        }
+        function mostrarInfo() {
+            infoCont.classList.toggle('use');
+            div.textContent = ''
+            if (!infoCont.classList.contains('use')) {
+                infoCont.classList.add('showMenu')
+                div.append(infoCont)
+            } else {
+                textCont.append(p);
+                textCont.append(quantity);
+        
+                imgText.append(img);
+                imgText.append(textCont);
+        
+        
+                btn.append(price);
+        
+                btnCont.append(btnInfo);
+                btnCont.append(btn);
+        
+                div.append(imgText);
+                div.append(btnCont);
+            }
         }
     })
 }
