@@ -13,9 +13,11 @@ Fuentes */
     font-family: 'Luckiest Guy', cursive;
     user-select: none;
 }
+
 body {
     background-color: #dcb;
 }
+
 .scrollLock {
     overflow: hidden;
 }
@@ -25,17 +27,20 @@ h1 {
     color: #fff;
     letter-spacing: .1rem;
 }
+
 .titleHeader {
     position: absolute;
     left: 0;
     right: 0;
     z-index: 1;
 }
+
 h3 {
     font-size: 1.5rem;
     text-align: center;
     padding: 1rem 0;
 }
+
 /* ------------Header------------ */
 .header {
     display: flex;
@@ -44,6 +49,7 @@ h3 {
     text-align: center;
     overflow: hidden;
 }
+
 .head {
     display: flex;
     align-items: center;
@@ -52,31 +58,39 @@ h3 {
     background-color: #654;
     width: 100%;
 }
+
 .oreosDisplay {
     font-size: 2rem;
 }
+
 .oreosPSDisplay {
     font-size: 1.5rem;
 }
-.menu, .info {
+
+.menu,
+.info {
     width: 2.5rem;
     z-index: 2;
     margin: 0 1rem;
     cursor: pointer;
 }
+
 .hideMenu {
     animation: hideMenu;
     animation-duration: .75s;
     animation-timing-function: ease-in-out;
 }
+
 .showMenu {
     animation: menu;
     animation-duration: .75s;
     animation-timing-function: ease-in-out;
 }
+
 .navMenu {
     display: flex;
 }
+
 .navMenuu {
     display: flex;
     position: absolute;
@@ -87,43 +101,53 @@ h3 {
     background-color: #654;
     color: #000;
 }
+
 .navMenu p {
     word-spacing: .1rem;
     letter-spacing: .05rem;
 }
+
 .infoHide {
     padding: 1rem;
     text-align: left;
 }
+
 .use {
     display: none;
 }
+
 @keyframes menu {
     0% {
         transform: translateX(100%);
     }
+
     100% {
         transform: translateX(0);
     }
 }
+
 @keyframes hideMenu {
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(200%);
     }
 }
+
 .reiniciarCont {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: .5rem;
 }
-.reiniciarCont button{
+
+.reiniciarCont button {
     padding: .5rem;
     width: 50%;
 }
+
 /* ------------Header------------ */
 
 /* ------------Main------------ */
@@ -132,6 +156,7 @@ h3 {
     flex-direction: column;
     align-items: center;
 }
+
 .construcciones-cont {
     display: flex;
     flex-direction: column;
@@ -140,6 +165,7 @@ h3 {
     width: 100%;
     overflow: hidden;
 }
+
 .construccion {
     display: flex;
     justify-content: space-between;
@@ -150,71 +176,94 @@ h3 {
     color: #fff;
     padding: 1rem;
 }
+
 .construccion button {
     padding: .5rem;
     cursor: pointer;
 }
+
 .construccion img {
     width: 2rem;
 }
+
 .btnCont {
     display: flex;
     gap: .5rem;
 }
+
 .infoCont {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
+
 .imgText {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
+
 @media (max-width: 400px) {
     .construccion {
         padding: .25rem;
         gap: .2rem;
     }
+
     .btnCont {
         display: flex;
         gap: .2rem;
     }
 }
+
 @media (max-width: 355px) {
     .construccion {
         padding: .5rem .2rem;
         gap: .2rem;
     }
+
     .construccion p {
         font-size: 1rem;
     }
-    .construccion button, .construccion button p {
+
+    .construccion button,
+    .construccion button p {
         font-size: .7rem;
     }
+
     .titleHeader {
         font-size: 1.7rem;
     }
+
     .btnCont {
         display: flex;
         gap: .2rem;
     }
 }
+
 .oreo-cont {
     display: flex;
     justify-content: center;
 }
+
+.oreo-contenedorDirecto {
+    margin: 5rem;
+    width: 30rem;
+    height: 30rem;
+}
+
 .oreo {
     margin: 5rem;
     width: 30rem;
+    height: 30rem;
     border-radius: 50%;
-    /* animation-name: oreo; */
-    animation-duration: 10s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
     cursor: pointer;
+    background-image: url(../img/oreo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
 }
+
 .oreoText {
     position: absolute;
     color: #fff;
@@ -228,6 +277,7 @@ h3 {
 .mejoras {
     width: 100%;
 }
+
 .mejoras-cont {
     display: flex;
     justify-content: center;
@@ -236,6 +286,7 @@ h3 {
     flex-wrap: wrap;
     margin: 0 .5rem;
 }
+
 .mejora {
     display: flex;
     flex-direction: column;
@@ -247,25 +298,30 @@ h3 {
     padding: .5rem;
     width: 25%;
 }
+
 .mejora button {
     padding: .5rem;
 }
+
 @media (max-width: 570px) {
     .mejora {
         width: 40%;
     }
 }
+
 @media (max-width: 380px) {
     .mejora {
         width: 45%;
     }
 }
+
 button {
     background-color: #eee;
     border: none;
     border-radius: .2rem;
     color: #000;
 }
+
 /* ------------Main------------ */
 
 /* ------------Footer------------ */
@@ -273,15 +329,18 @@ footer {
     text-align: center;
     margin-top: 5rem;
 }
+
 footer h1 {
     padding: 1rem 0;
 }
+
 /* ------------Footer------------ */
 
 @keyframes oreo {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -292,6 +351,7 @@ footer h1 {
         transform: translateY(0);
         opacity: 1;
     }
+
     100% {
         transform: translateY(-5rem);
         opacity: 0;
